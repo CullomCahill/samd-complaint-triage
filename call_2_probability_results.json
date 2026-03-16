@@ -1,0 +1,32 @@
+[
+  {
+    "bug_id": "BUG-201",
+    "probability_score": 3,
+    "probability_label": "Moderate",
+    "rationale": "This defect involves the AI/ML algorithm's failure to properly classify acute panic attack disclosures, which are reasonably common presentations in a CBT-based therapeutic chatbot designed for mental health users. While not all users will experience or disclose panic attacks, the condition affects a significant portion of mental health populations, making encounters with this triggering scenario occur occasionally during normal therapeutic conversations."
+  },
+  {
+    "bug_id": "BUG-203",
+    "probability_score": 5,
+    "probability_label": "Very High",
+    "rationale": "The bug affects a specific day (Day 7) in the sleep hygiene program, meaning every user who reaches this point in the program will encounter the defect since the audio file mapping is systematically incorrect. While only two users have reported it so far, this likely reflects that few users have progressed to Day 7 yet, but all future users reaching this stage will experience the same audio/text mismatch."
+  },
+  {
+    "bug_id": "BUG-207",
+    "probability_score": 2,
+    "probability_label": "Low",
+    "rationale": "This defect only affects users who change timezones or travel across timezone boundaries, which represents a small subset of the total user base during normal daily use. The bug report indicates only four reports from traveling users, suggesting this is an uncommon occurrence that most users will not encounter in typical usage patterns."
+  },
+  {
+    "bug_id": "BUG-208",
+    "probability_score": 3,
+    "probability_label": "Moderate",
+    "rationale": "The defect is triggered by common user actions like saying 'goodbye' or 'I'm done for today' followed by closing the app, which are natural session termination behaviors that users would frequently perform. While seven complaints have been received indicating real-world occurrence, this represents a subset of users rather than widespread impact, suggesting the conditions occur occasionally but not for every user or session."
+  },
+  {
+    "bug_id": "BUG-209",
+    "probability_score": 3,
+    "probability_label": "Moderate",
+    "rationale": "Three similar reports have already been received, indicating this is not an isolated incident. Sharing song lyrics or discussing music is a reasonably common conversational topic that users would likely engage in during normal therapeutic chatbot interactions, and many songs contain emotional content that could trigger false positives in the crisis detection algorithm."
+  }
+]

@@ -1,0 +1,152 @@
+{
+    "user_needs": [
+      {
+        "id": "UN-001",
+        "description": "User shall be able to track their daily mood over time to monitor emotional patterns."
+      },
+      {
+        "id": "UN-002",
+        "description": "User shall receive evidence-based CBT therapeutic exercises including thought challenging, cognitive distortion identification, and alternative thought generation."
+      },
+      {
+        "id": "UN-003",
+        "description": "User shall be able to journal about gratitude as part of a structured therapeutic program."
+      },
+      {
+        "id": "UN-004",
+        "description": "User shall receive guided sleep hygiene content delivered in a progressive daily sequence."
+      },
+      {
+        "id": "UN-005",
+        "description": "User shall be connected to crisis resources immediately when expressing distress or suicidal ideation."
+      },
+      {
+        "id": "UN-006",
+        "description": "User shall be able to view their progress and therapeutic engagement over time."
+      },
+      {
+        "id": "UN-007",
+        "description": "User shall receive timely reminders to engage with therapeutic content."
+      },
+      {
+        "id": "UN-008",
+        "description": "User shall have their clinical information securely and accurately communicated to their care provider when a therapist handoff is initiated."
+      },
+      {
+        "id": "UN-009",
+        "description": "User shall be able to interact with the chatbot using natural language and receive contextually appropriate therapeutic responses."
+      },
+      {
+        "id": "UN-010",
+        "description": "User shall be able to save and retrieve therapeutic work completed during sessions, including thought records and journal entries."
+      }
+    ],
+    "product_requirements": [
+      {
+        "id": "PR-001",
+        "description": "The system shall allow the user to submit one mood check-in per calendar day, recording a mood score on a 1-10 scale.",
+        "traces_to": "UN-001"
+      },
+      {
+        "id": "PR-002",
+        "description": "The system shall store all mood check-in data and persist it across app sessions, updates, and backgrounding.",
+        "traces_to": "UN-001"
+      },
+      {
+        "id": "PR-003",
+        "description": "The CBT thought challenging module shall guide the user through all required steps in sequence: identify situation, identify automatic thought, identify cognitive distortion, challenge thought, and generate alternative thought.",
+        "traces_to": "UN-002"
+      },
+      {
+        "id": "PR-004",
+        "description": "The system shall save the full text of all user entries in therapeutic exercises, including thought records, without truncation or data loss.",
+        "traces_to": "UN-010"
+      },
+      {
+        "id": "PR-005",
+        "description": "The crisis detection algorithm shall identify crisis-related language regardless of capitalization, punctuation, misspelling, or formatting variations, and initiate the crisis escalation protocol within 2 seconds of detection.",
+        "traces_to": "UN-005"
+      },
+      {
+        "id": "PR-006",
+        "description": "The crisis escalation flow shall display current, verified crisis resource contact information including hotline numbers and text lines.",
+        "traces_to": "UN-005"
+      },
+      {
+        "id": "PR-007",
+        "description": "The sleep hygiene program shall deliver content in the correct sequential order (Day 1 through Day 14) based on the user's enrollment date.",
+        "traces_to": "UN-004"
+      },
+      {
+        "id": "PR-008",
+        "description": "The progress dashboard shall load and display the user's historical data within 3 seconds.",
+        "traces_to": "UN-006"
+      },
+      {
+        "id": "PR-009",
+        "description": "The therapist handoff workflow shall transmit only the correct patient's session summary and clinical data to the designated care provider. No cross-patient data leakage shall occur.",
+        "traces_to": "UN-008"
+      },
+      {
+        "id": "PR-010",
+        "description": "Push notifications shall render correctly on all supported OS versions, displaying formatted text as intended without exposing raw markup.",
+        "traces_to": "UN-007"
+      },
+      {
+        "id": "PR-011",
+        "description": "The chatbot shall gracefully handle unexpected user inputs, including emoji-only responses, empty messages, and nonsensical text, without entering infinite loops or requiring a force close.",
+        "traces_to": "UN-009"
+      },
+      {
+        "id": "PR-012",
+        "description": "The sentiment analysis model shall accurately classify user emotional state, accounting for common linguistic patterns including sarcasm, minimization, and indirect expression of distress.",
+        "traces_to": "UN-009"
+      },
+      {
+        "id": "PR-013",
+        "description": "The gratitude journaling feature shall prompt the user to save or discard an entry before navigating away from an in-progress entry on all supported platforms.",
+        "traces_to": "UN-003"
+      },
+      {
+        "id": "PR-014",
+        "description": "The app shall launch successfully and be fully functional regardless of the duration since the user's last session.",
+        "traces_to": "UN-006"
+      },
+      {
+        "id": "PR-015",
+        "description": "The system shall enforce that only features included in the current released product version are accessible to end users. Unreleased or deprecated features shall not be accessible through any user-facing pathway.",
+        "traces_to": "UN-009"
+      }
+    ],
+    "clinical_safety_criteria": {
+      "description": "Criteria for determining whether a bug has potential for clinical harm in a mental health digital therapeutic. A bug is considered to have clinical safety implications if ANY of the following are true.",
+      "criteria": [
+        {
+          "id": "CS-001",
+          "description": "The bug could prevent a user in crisis from receiving appropriate crisis resources or escalation to a human provider.",
+          "examples": ["Crisis detection failure", "Incorrect or unreachable hotline numbers", "Escalation flow not triggering"]
+        },
+        {
+          "id": "CS-002",
+          "description": "The bug could result in the chatbot providing a clinically inappropriate therapeutic response, such as reinforcing negative thought patterns, misidentifying emotional state, or skipping required therapeutic steps.",
+          "examples": ["Sentiment misclassification leading to wrong response", "Skipping CBT steps", "Providing positive reinforcement when user is distressed"]
+        },
+        {
+          "id": "CS-003",
+          "description": "The bug could result in protected health information (PHI) being disclosed to unauthorized parties or associated with the wrong patient.",
+          "examples": ["Cross-patient data in therapist handoff", "Session data sent to wrong provider", "PHI visible in logs or notifications"]
+        },
+        {
+          "id": "CS-004",
+          "description": "The bug could cause a user to lose access to the therapeutic tool entirely during a period when they rely on it for mental health support.",
+          "examples": ["App crash preventing any use", "Account lockout", "Data corruption preventing login"]
+        },
+        {
+          "id": "CS-005",
+          "description": "The bug could undermine therapeutic efficacy by delivering incorrect content sequencing, skipping therapeutic components, or corrupting the user's therapeutic data or progress history.",
+          "examples": ["Wrong content delivered in a program sequence", "Loss of journal entries or thought records", "Incorrect progress data affecting clinical decisions"]
+        }
+      ],
+      "note": "When in doubt, flag as potential clinical safety concern. It is better to over-flag and have a human reviewer dismiss a false positive than to miss a genuine safety issue."
+    }
+  }

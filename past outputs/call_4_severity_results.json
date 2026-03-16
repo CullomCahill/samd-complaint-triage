@@ -1,0 +1,92 @@
+[
+  {
+    "bug_id": "BUG-101",
+    "severity_score": 5,
+    "severity_label": "Critical",
+    "rationale": "This defect prevents vulnerable users in mental health crisis from receiving life-saving crisis intervention resources when they express suicidal ideation or self-harm intent in capital letters, creating direct risk of clinical harm. The failure of this core safety mechanism in a regulated medical device for mental health treatment represents the highest level of severity as it could contribute to serious patient safety events. As evidenced by the actual user complaint, this defect has already prevented a user expressing suicidal thoughts from accessing required crisis support."
+  },
+  {
+    "bug_id": "BUG-103",
+    "severity_score": 3,
+    "severity_label": "Moderate",
+    "rationale": "This defect disrupts the therapeutic session by forcing users to restart their mood tracking entry, which could lead to frustration and potential abandonment of this core CBT component. While users can recover by re-entering their data, the repeated loss of progress undermines the reliability of daily mood tracking, which is essential for therapeutic efficacy and clinical decision-making in CBT treatment."
+  },
+  {
+    "bug_id": "BUG-104",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect prevents the therapeutic chatbot from recognizing when users are expressing distress through sarcasm, causing it to provide clinically inappropriate responses that reinforce perceived positive mood rather than addressing underlying negative emotions. For vulnerable mental health users, this misclassification could cause psychological distress by making them feel unheard or misunderstood, and fundamentally undermines the clinical efficacy of the therapeutic intervention by missing critical opportunities to provide appropriate support."
+  },
+  {
+    "bug_id": "BUG-105",
+    "severity_score": 2,
+    "severity_label": "Minor",
+    "rationale": "While the raw HTML tags create an unprofessional appearance that could slightly reduce user trust and engagement with therapeutic reminders, users can still understand the core message and continue their therapeutic activities. The defect causes a slight inconvenience but does not prevent therapeutic function or cause significant psychological distress to vulnerable users."
+  },
+  {
+    "bug_id": "BUG-106",
+    "severity_score": 5,
+    "severity_label": "Critical",
+    "rationale": "This defect causes protected health information (PHI) to be disclosed to unauthorized parties, representing a severe HIPAA violation that could result in regulatory penalties, loss of patient trust, and potential psychological harm to vulnerable mental health patients whose private session data is exposed. The breach of confidentiality in mental health care can cause significant distress and may prevent affected patients from continuing treatment or seeking future mental health services."
+  },
+  {
+    "bug_id": "BUG-107",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect prevents users with consistently low mood scores (1-2 range) from accurately viewing their therapeutic progress data, which is essential for CBT effectiveness and clinical decision-making. The issue specifically impacts the most vulnerable users who need clear visibility into their progress tracking, potentially undermining their therapeutic journey and causing distress when they cannot properly assess their improvement over time."
+  },
+  {
+    "bug_id": "BUG-108",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect silently corrupts core CBT therapeutic data by truncating alternative thoughts without user awareness, directly undermining the thought challenging process which is fundamental to CBT efficacy. The silent nature of the truncation means users lose critical therapeutic work without knowing it, potentially causing distress when they discover their efforts weren't preserved and compromising their treatment progress. This prevents the therapeutic function from working as intended and could cause psychological distress to vulnerable users who rely on documenting their full cognitive restructuring work."
+  },
+  {
+    "bug_id": "BUG-109",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect undermines the clinical efficacy of the CBT-based sleep hygiene intervention by disrupting the therapeutically important progressive daily sequence, potentially compromising treatment outcomes for vulnerable mental health users. The incorrect content sequencing prevents users from receiving the intended Day 3 therapeutic content and exposes them to premature Day 4 material, which could cause confusion and reduce the effectiveness of their mental health treatment."
+  },
+  {
+    "bug_id": "BUG-110",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect completely prevents users from accessing their therapeutic tool when attempting to re-engage after a break, creating a significant barrier during periods when mental health support may be critically needed. The required app reinstallation causes loss of therapeutic progress data and history, which undermines treatment continuity and could cause distress to vulnerable users who lose their documented mental health journey."
+  },
+  {
+    "bug_id": "BUG-112",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect prevents users from continuing their therapeutic session and forces them to restart the app, which disrupts the therapeutic conversation flow and could cause distress to vulnerable users who lose access to mental health support at critical moments. The infinite loop completely blocks the core therapeutic function and undermines clinical efficacy by breaking the continuity of CBT interventions."
+  },
+  {
+    "bug_id": "BUG-113",
+    "severity_score": 5,
+    "severity_label": "Critical",
+    "rationale": "Users in mental health crisis who attempt to call the provided hotline number receive a 'number not in service' message, creating a critical barrier to accessing immediate professional help when they are most vulnerable. This defect directly undermines the product's core safety function of crisis escalation and could delay or prevent users from receiving life-saving mental health intervention during acute episodes."
+  },
+  {
+    "bug_id": "BUG-114",
+    "severity_score": 3,
+    "severity_label": "Moderate",
+    "rationale": "The defect disrupts the therapeutic journaling session by causing unexpected loss of user's therapeutic work without warning, which could lead to frustration and reduced engagement with this CBT component. While users can restart their journal entry, the loss of potentially meaningful therapeutic content undermines the efficacy of the gratitude journaling intervention and may negatively impact therapeutic progress over time."
+  },
+  {
+    "bug_id": "BUG-116",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect prevents users from completing a core therapeutic function - identifying cognitive distortions - which is essential for developing skills to recognize and challenge unhelpful thinking patterns in CBT. The skipped step undermines the clinical efficacy of the thought challenging module, leaving users without crucial therapeutic learning that could impact their mental health treatment outcomes. While not immediately dangerous, this represents a significant disruption to the intended therapeutic intervention for all users of this module."
+  },
+  {
+    "bug_id": "BUG-117",
+    "severity_score": 3,
+    "severity_label": "Moderate",
+    "rationale": "The 8+ second loading time with no progress indication disrupts the therapeutic session by preventing users from accessing their progress data, which is essential for CBT therapy effectiveness. While users can recover by waiting or retrying, the lack of feedback causes confusion and may lead some users to abandon this critical therapeutic function. This undermines the clinical efficacy of treatment by blocking access to mood pattern review, a core component of cognitive behavioral therapy."
+  },
+  {
+    "bug_id": "BUG-119",
+    "severity_score": 4,
+    "severity_label": "Major",
+    "rationale": "This defect corrupts therapeutic progress data that clinicians rely on for treatment decisions, potentially leading to incorrect assessments of a patient's emotional patterns and mental health status. The data integrity compromise undermines the core therapeutic function of mood tracking and could result in inappropriate clinical interventions or missed opportunities for necessary care adjustments. While not immediately life-threatening, the potential for clinical misjudgment based on corrupted mood data represents a significant risk to patient care quality."
+  }
+]

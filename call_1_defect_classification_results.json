@@ -1,0 +1,134 @@
+[
+  {
+    "bug_id": "BUG-201",
+    "is_defect": true,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug description explicitly states 'in_released_product': true and involves the chatbot feature which is part of the released product.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-012"
+    ],
+    "criterion_2_failed_user_needs": [
+      "UN-009"
+    ],
+    "criterion_2_rationale": "The chatbot failed to provide contextually appropriate therapeutic responses by recommending general relaxation breathing exercises instead of appropriate panic intervention techniques when a user disclosed an active panic attack. This violates PR-012 which requires accurate classification of user emotional state and UN-009 which requires contextually appropriate therapeutic responses.",
+    "summary": "BUG-201 qualifies as a defect because the chatbot provided an inappropriate therapeutic response during a user's active panic attack disclosure. The system failed to accurately classify the user's distressed emotional state and provide contextually appropriate intervention, instead offering general relaxation techniques unsuitable for acute panic situations. This represents a deviation from the intended function of delivering appropriate therapeutic responses based on user context and emotional state."
+  },
+  {
+    "bug_id": "BUG-202",
+    "is_defect": false,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug report explicitly states 'in_released_product': true and affects the progress dashboard which is a core feature.",
+    "criterion_2_deviates_from_intended_function": false,
+    "criterion_2_failed_requirements": [],
+    "criterion_2_failed_user_needs": [],
+    "criterion_2_rationale": "While the trend line display may be suboptimal UX, no specific requirements define when trend lines should or should not be displayed, and PR-008 only requires the dashboard to load within 3 seconds, which it does.",
+    "summary": "BUG-202 involves a trend line appearing for users with only one mood data point, which while potentially confusing, does not violate any explicit product requirements or user needs. The progress dashboard functions as intended by loading user data, and no requirements specify trend line display logic or minimum data point thresholds. This represents a user experience enhancement opportunity rather than a defect."
+  },
+  {
+    "bug_id": "BUG-203",
+    "is_defect": true,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug is explicitly stated as being present in the released product with 'in_released_product': true and affects the sleep hygiene program which is a core feature.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-007"
+    ],
+    "criterion_2_failed_user_needs": [
+      "UN-004"
+    ],
+    "criterion_2_rationale": "This violates PR-007 which requires the sleep hygiene program to deliver content in the correct sequential order, as users are receiving Day 6 audio content when they should receive Day 7 content. This also fails UN-004 which requires users to receive guided sleep hygiene content delivered in a progressive daily sequence.",
+    "summary": "BUG-203 qualifies as a defect because it is present in the released product and represents a deviation from intended functionality. The sleep hygiene program is delivering incorrect audio content (Day 6 instead of Day 7), which violates the requirement for sequential content delivery and disrupts the progressive therapeutic program design. This impacts the integrity of the evidence-based sleep hygiene intervention provided to users."
+  },
+  {
+    "bug_id": "BUG-204",
+    "is_defect": false,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The account deletion feature is part of the released product and users can access and execute the deletion flow.",
+    "criterion_2_deviates_from_intended_function": false,
+    "criterion_2_failed_requirements": [],
+    "criterion_2_failed_user_needs": [],
+    "criterion_2_rationale": "No user needs or product requirements specify data deletion functionality or retention policies, so this issue does not represent a deviation from documented intended function.",
+    "summary": "BUG-204 does not qualify as a defect because while the account deletion issue exists in the released product, it does not violate any documented user needs or product requirements. The misleading confirmation message represents a gap in requirements coverage rather than a deviation from specified functionality. This should be addressed through enhanced requirements definition and user communication improvements."
+  },
+  {
+    "bug_id": "BUG-205",
+    "is_defect": false,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug is explicitly stated to be in the released product and affects the gratitude journaling feature which is part of the core product functionality.",
+    "criterion_2_deviates_from_intended_function": false,
+    "criterion_2_failed_requirements": [],
+    "criterion_2_failed_user_needs": [],
+    "criterion_2_rationale": "While the timestamp display issue causes user confusion, it does not prevent users from journaling about gratitude as part of the structured therapeutic program (UN-003), nor does it violate any specific product requirements related to timestamp display formatting.",
+    "summary": "BUG-205 represents a user experience issue with timestamp display formatting in the gratitude journaling feature but does not qualify as a defect. The core therapeutic functionality remains intact as users can still effectively journal about gratitude despite the timestamp confusion. This is a quality improvement opportunity rather than a deviation from intended medical device function."
+  },
+  {
+    "bug_id": "BUG-206",
+    "is_defect": false,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug is explicitly stated to be present in the released product and was discovered by internal QA.",
+    "criterion_2_deviates_from_intended_function": false,
+    "criterion_2_failed_requirements": [],
+    "criterion_2_failed_user_needs": [],
+    "criterion_2_rationale": "The in-app help center link functionality is not covered by any of the defined user needs or product requirements, which focus on core therapeutic functions like mood tracking, CBT exercises, crisis detection, and clinical data handling.",
+    "summary": "BUG-206 describes a broken help center link in the released product but does not qualify as a defect under our classification criteria. While the bug exists in the released product, it does not represent a deviation from any defined user need or product requirement since help center functionality is not part of the core therapeutic product specifications."
+  },
+  {
+    "bug_id": "BUG-207",
+    "is_defect": true,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug affects the daily mood check-in feature which is explicitly marked as being in the released product and has been reported by multiple users.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-001"
+    ],
+    "criterion_2_failed_user_needs": [
+      "UN-001"
+    ],
+    "criterion_2_rationale": "The bug prevents users from submitting their required daily mood check-in when they change timezones, violating PR-001 which mandates one mood check-in per calendar day. This directly impairs UN-001 which requires users to be able to track their daily mood over time.",
+    "summary": "BUG-207 qualifies as a defect because it prevents users from completing their daily mood check-ins after timezone changes, directly violating the product requirement for one mood check-in per calendar day. This functionality failure affects the core user need to track daily mood patterns over time. The issue has been confirmed by multiple customer reports and represents a clear deviation from the intended product function."
+  },
+  {
+    "bug_id": "BUG-208",
+    "is_defect": true,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug report explicitly states 'in_released_product': true and describes behavior occurring in the live product with customer complaints.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-011"
+    ],
+    "criterion_2_failed_user_needs": [
+      "UN-009"
+    ],
+    "criterion_2_rationale": "The chatbot fails to gracefully handle user session termination signals like 'goodbye', continuing conversation contrary to user intent, which violates PR-011's requirement for proper handling of user inputs and UN-009's requirement for contextually appropriate responses.",
+    "summary": "BUG-208 qualifies as a defect because the chatbot inappropriately continues conversations after users explicitly signal session termination, failing to provide contextually appropriate therapeutic responses as required. This represents a deviation from intended chatbot functionality that has resulted in seven customer complaints about intrusive behavior. The issue violates both the user need for natural language interaction and the product requirement for graceful handling of user inputs."
+  },
+  {
+    "bug_id": "BUG-209",
+    "is_defect": true,
+    "criterion_1_in_released_product": true,
+    "criterion_1_rationale": "The bug is explicitly documented as occurring in the released product with the crisis detection feature actively functioning.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-012"
+    ],
+    "criterion_2_failed_user_needs": [
+      "UN-009"
+    ],
+    "criterion_2_rationale": "The crisis detection system fails PR-012 by not accurately classifying user emotional state when song lyrics are shared in a conversational context, and fails UN-009 by not providing contextually appropriate therapeutic responses to natural language interaction about music preferences.",
+    "summary": "BUG-209 qualifies as a defect because the crisis detection algorithm inappropriately triggers on song lyrics shared in conversational context, failing to distinguish between actual distress and artistic content discussion. This deviation from intended function violates both the sentiment analysis accuracy requirement and the user need for contextually appropriate chatbot responses. The false positive detection creates user confusion and stigmatization, representing a significant impact on the therapeutic user experience."
+  },
+  {
+    "bug_id": "BUG-210",
+    "is_defect": false,
+    "criterion_1_in_released_product": false,
+    "criterion_1_rationale": "The bug description explicitly states 'in_released_product: false' and relates to a beta program feature which is not part of the core released product functionality.",
+    "criterion_2_deviates_from_intended_function": true,
+    "criterion_2_failed_requirements": [
+      "PR-015"
+    ],
+    "criterion_2_failed_user_needs": [],
+    "criterion_2_rationale": "This violates PR-015 which requires that only features included in the current released product version are accessible to end users, as non-beta users are being shown beta program opt-in screens.",
+    "summary": "BUG-210 does not qualify as a defect because it involves a beta program feature that is not part of the released product, failing to meet criterion 1. While it does violate PR-015 regarding feature access control, both criteria must be satisfied for defect classification. The issue should be addressed as a bug fix but does not constitute a formal defect for regulatory purposes."
+  }
+]

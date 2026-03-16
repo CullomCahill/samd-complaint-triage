@@ -1,0 +1,140 @@
+[
+  {
+    "bug_id": "BUG-101",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-001"
+    ],
+    "rationale": "This defect directly prevents users in crisis from receiving appropriate crisis resources when they express crisis language in all capital letters, as evidenced by the actual user complaint where someone expressing suicidal ideation did not receive required crisis support.",
+    "safety_severity": "critical"
+  },
+  {
+    "bug_id": "BUG-103",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "This bug undermines therapeutic efficacy by preventing users from reliably completing daily mood tracking, which is a core therapeutic component that provides essential data for CBT treatment progress and clinical decision-making. The loss of mood data due to app backgrounding could result in incomplete therapeutic records and affect the continuity of care.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-104",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-002"
+    ],
+    "rationale": "The sentiment misclassification directly causes the chatbot to provide clinically inappropriate therapeutic responses by reinforcing what appears to be positive mood when the user is actually expressing distress or negative emotions through sarcasm. This misidentification of emotional state and inappropriate response delivery violates CS-002 criteria and could undermine therapeutic progress.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-105",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "The display of raw HTML tags instead of properly formatted therapeutic reminders could undermine therapeutic efficacy by making engagement prompts appear unprofessional or confusing, potentially reducing user trust and engagement with the therapeutic tool. While not directly corrupting therapeutic data, this formatting issue could compromise the delivery of therapeutic components by making reminders less effective.",
+    "safety_severity": "low"
+  },
+  {
+    "bug_id": "BUG-106",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-003"
+    ],
+    "rationale": "This defect directly causes protected health information (PHI) to be disclosed to unauthorized parties, as confirmed by the therapist receiving another patient's session summary. This represents a clear HIPAA violation and compromises patient privacy in a regulated medical device environment.",
+    "safety_severity": "critical"
+  },
+  {
+    "bug_id": "BUG-107",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "The overlapping UI elements prevent users from accurately viewing their mood score progress data, which could undermine therapeutic efficacy by corrupting the visibility of essential therapeutic progress information that may be used for clinical decisions. This particularly impacts users with consistently low mood scores (1-2 range) who may be most vulnerable and need clear visibility into their progress tracking.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-108",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "This bug corrupts therapeutic data by silently truncating alternative thoughts, which are a core component of CBT therapy, potentially undermining the effectiveness of the thought challenging process and therapeutic progress tracking.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-109",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "This defect delivers incorrect content sequencing in the sleep hygiene program, which undermines therapeutic efficacy by skipping required Day 3 content and presenting premature Day 4 material. The progressive daily sequence is therapeutically important for CBT-based interventions, and disrupting this sequence could compromise treatment outcomes.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-110",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-004",
+      "CS-005"
+    ],
+    "rationale": "The crash prevents users from accessing the therapeutic tool entirely when they attempt to re-engage after a break, which could occur during a period when they need mental health support. Additionally, requiring app reinstallation causes loss of local therapeutic data including progress history, which undermines therapeutic continuity.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-112",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-004",
+      "CS-005"
+    ],
+    "rationale": "This bug forces users to restart the app when they use emoji-only responses, effectively blocking access to the therapeutic tool during their session and disrupting the therapeutic interaction sequence. Users who rely on the chatbot for mental health support could lose access at critical moments, and the disrupted conversation flow undermines therapeutic efficacy.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-113",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-001"
+    ],
+    "rationale": "This bug directly prevents users in crisis from receiving appropriate crisis resources by directing them to a decommissioned hotline that returns a 'number not in service' message. This creates a barrier to accessing immediate mental health assistance when users are most vulnerable and need crisis support.",
+    "safety_severity": "critical"
+  },
+  {
+    "bug_id": "BUG-114",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "The bug causes loss of journal entries without user confirmation, which corrupts therapeutic data and undermines the therapeutic efficacy of the gratitude journaling feature. This could negatively impact the user's therapeutic progress and engagement with this CBT component.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-116",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-002",
+      "CS-005"
+    ],
+    "rationale": "This bug causes the CBT flow to skip the cognitive distortion identification step, which is a core therapeutic component that helps users recognize unhelpful thinking patterns. Without this step, users may not develop the skills to identify distortions in their thoughts, potentially undermining the therapeutic efficacy of the thought challenging module.",
+    "safety_severity": "moderate"
+  },
+  {
+    "bug_id": "BUG-117",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "The 8+ second loading time with no progress indication could cause users to abandon accessing their therapeutic progress data, potentially undermining therapeutic efficacy by preventing users from reviewing their mood patterns and treatment progress which are essential components of CBT therapy.",
+    "safety_severity": "low"
+  },
+  {
+    "bug_id": "BUG-119",
+    "has_clinical_safety_implications": true,
+    "triggered_safety_criteria": [
+      "CS-005"
+    ],
+    "rationale": "The ability to submit multiple mood check-ins per day corrupts the user's therapeutic progress data and creates inaccurate trend visualizations that could lead to incorrect clinical assessments of the user's emotional patterns. This data corruption could affect clinical decisions made by providers reviewing the user's mood tracking history.",
+    "safety_severity": "moderate"
+  }
+]

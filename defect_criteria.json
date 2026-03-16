@@ -1,0 +1,36 @@
+{
+    "product": {
+    "name": "MindBridge",
+    "description": "A CBT-based mental health chatbot delivered via iOS and Android mobile apps. The product consists of a content management system (CMS) holding conversational flows in decision-tree format, a platform API for backend logic, mobile apps, and AI algorithms for sentiment analysis and response selection.",
+    "components": ["CMS", "Platform API", "iOS App", "Android App", "AI/ML Algorithms"],
+    "current_release": "v2.4.1",
+    "released_features": ["Daily mood check-in", "CBT thought challenging module", "Sleep hygiene program", "Gratitude journaling", "Crisis detection and escalation", "Therapist handoff workflow", "Progress dashboard", "Push notification reminders"]
+  },
+  "defect_criteria": {
+    "must_meet_both": [
+      "It is included in the released product (not deprecated or unreleased features)",
+      "It is a deviation from the intended function of the core product (fails a User Need or Product Requirement)"
+    ]
+  },
+  "risk_matrix": {
+    "probability": {
+      "1": "Remote - unlikely to occur",
+      "2": "Low - could occur but rare",
+      "3": "Moderate - may occur occasionally",
+      "4": "High - likely to occur",
+      "5": "Very High - almost certain to occur"
+    },
+    "severity": {
+      "1": "Negligible - No injury or health impact to the patient or user.  Inconvenience or temporary discomfort that resolves on its own without any intervention.",
+      "2": "Minor - Temporary injury or impairment that resolves with minor first aid or minimal medical intervention.  No lasting health effects.",
+      "3": "Moderate - Injury or impairment requiring professional medical intervention or treatment.  Reversible harm but may involve extended recovery time.",
+      "4": "Major - Severe injury, permanent impairment, or life-threatening condition requiring significant medical or surgical intervention.  Potential for long-term disability.",
+      "5": "Critical - Death or irreversible, life-altering injury.  Includes scenarios that could affect multiple patients or users."
+    },
+    "risk_levels": {
+      "low": "Score 1-6: Log as complaint, moderate timeline for resolution",
+      "medium": "Score 7-14: Complaint with option to escalate to CAPA",
+      "high": "Score 15-25: Required CAPA with defined timeline"
+    }
+  }
+}
