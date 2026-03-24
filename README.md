@@ -10,10 +10,16 @@ See `flow_diagram.html` (open in any browser) for a visual of the pipeline.
 
 ## Setup
 
-**Requirements:** Python 3.x, an Anthropic API key
+**Requirements:** `uv`, an Anthropic API key
 
 ```bash
-pip install anthropic python-dotenv
+uv sync
+```
+
+To add new dependencies later, use:
+
+```bash
+uv add <package-name>
 ```
 
 Add your API key to a `.env` file in the project root:
@@ -25,10 +31,31 @@ ANTHROPIC_API_KEY=your_key_here
 **Run the full pipeline:**
 
 ```bash
-python run_pipeline.py
+uv run python run_pipeline.py
 ```
 
 `run_pipeline.py` runs a preflight check before making any API calls — it verifies all required input files exist and are non-empty, and that the API key is set. If anything is missing, it exits with a clear error message.
+
+---
+
+## Developer Commands
+
+Run an individual step:
+
+```bash
+uv run complaint_triage
+uv run probability
+uv run severity
+uv run final_scoring
+```
+
+Environment and dependency maintenance:
+
+```bash
+uv sync
+uv lock
+uv add <package-name>
+```
 
 ---
 

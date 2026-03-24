@@ -153,5 +153,9 @@ def run_pipeline():
     print("=" * 70)
 
 
-if __name__ == "__main__":
+def main():
     run_pipeline()
+
+
+if __name__ == "__main__":
+    main()
