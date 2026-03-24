@@ -17,6 +17,9 @@ with open("defect_criteria.json") as f:
     defect_criteria = json.load(f)["defect_criteria"] # nested in json object
 
 
+from costs import INPUT_COST_PER_TOKEN, OUTPUT_COST_PER_TOKEN
+
+
 def classify_defect(bug):
     """LLM Call 1: Determine if a bug is a defect or non-defect."""
 
@@ -89,17 +92,21 @@ Respond in the following JSON format only, no other text:
     cleaned = cleaned.strip()
 
     result = json.loads(cleaned)
-    return result
+    return result, response.usage
 
 
 def main():
     results = []
+    total_input_tokens = 0
+    total_output_tokens = 0
 
     for bug in bugs:
         print(f"Processing {bug['id']}: {bug['title']}...")
         try:
-            result = classify_defect(bug)
+            result, usage = classify_defect(bug)
             results.append(result)
+            total_input_tokens += usage.input_tokens
+            total_output_tokens += usage.output_tokens
 
             status = "DEFECT" if result["is_defect"] else "NON-DEFECT"
             print(f"  Result: {status}")
@@ -125,6 +132,19 @@ def main():
     print(f"Defects: {len(defects)}")
     print(f"Non-defects: {len(non_defects)}")
     print(f"Results saved to call_1_defect_classification_results.json")
+    input_cost = total_input_tokens * INPUT_COST_PER_TOKEN
+    output_cost = total_output_tokens * OUTPUT_COST_PER_TOKEN
+    print(f"\nToken Usage (Step 1):")
+    print(f"  Input tokens:  {total_input_tokens:,}  (${input_cost:.4f})")
+    print(f"  Output tokens: {total_output_tokens:,}  (${output_cost:.4f})")
+    print(f"  Step total:    ${input_cost + output_cost:.4f}")
+
+    with open("usage_step1.json", "w") as f:
+        json.dump({
+            "input_tokens": total_input_tokens,
+            "output_tokens": total_output_tokens,
+            "total_cost": input_cost + output_cost
+        }, f)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import json
 import subprocess
 import sys
 import time
@@ -146,10 +147,28 @@ def run_pipeline():
         print()
 
     total_elapsed = time.time() - start_time
+
+    usage_files = ["usage_step1.json", "usage_step2.json", "usage_step3.json"]
+    total_input_tokens = 0
+    total_output_tokens = 0
+    total_cost = 0.0
+    for path in usage_files:
+        if os.path.exists(path):
+            with open(path) as f:
+                u = json.load(f)
+                total_input_tokens += u["input_tokens"]
+                total_output_tokens += u["output_tokens"]
+                total_cost += u["total_cost"]
+
     print("=" * 70)
     print(f"  PIPELINE COMPLETE")
     print(f"  Total time: {total_elapsed:.1f} seconds")
     print(f"  Final report: final_triage_report.json")
+    print()
+    print(f"  Token Usage (all steps):")
+    print(f"    Input tokens:  {total_input_tokens:,}")
+    print(f"    Output tokens: {total_output_tokens:,}")
+    print(f"    Total cost:    ${total_cost:.4f}")
     print("=" * 70)
 
 
