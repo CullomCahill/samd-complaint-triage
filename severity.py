@@ -22,6 +22,9 @@ print()
 severity_scale = defect_context["risk_matrix"]["severity"]
 
 
+from costs import INPUT_COST_PER_TOKEN, OUTPUT_COST_PER_TOKEN
+
+
 def assess_severity(defect, bug_data):
     """LLM Call 3: Assess the severity score for a defect."""
 
@@ -87,7 +90,7 @@ Respond in the following JSON format only, no other text:
     cleaned = cleaned.strip()
 
     result = json.loads(cleaned)
-    return result
+    return result, response.usage
 
 
 def main():
@@ -103,6 +106,8 @@ def main():
     bug_lookup = {b["id"]: b for b in bug_list}
 
     results = []
+    total_input_tokens = 0
+    total_output_tokens = 0
 
     for defect in defects:
         bug_id = defect["bug_id"]
@@ -125,8 +130,10 @@ def main():
 
         print(f"Processing {bug_id}: {bug['title']}...")
         try:
-            result = assess_severity(defect, clean_bug)
+            result, usage = assess_severity(defect, clean_bug)
             results.append(result)
+            total_input_tokens += usage.input_tokens
+            total_output_tokens += usage.output_tokens
 
             print(f"  Severity: {result['severity_score']} - {result['severity_label']}")
             print(f"  Rationale: {result['rationale']}")
@@ -151,6 +158,19 @@ def main():
         label = severity_scale[str(score)]
         print(f"  {score} ({label}): {count}")
     print(f"\nResults saved to call_3_severity_results.json")
+    input_cost = total_input_tokens * INPUT_COST_PER_TOKEN
+    output_cost = total_output_tokens * OUTPUT_COST_PER_TOKEN
+    print(f"\nToken Usage (Step 3):")
+    print(f"  Input tokens:  {total_input_tokens:,}  (${input_cost:.4f})")
+    print(f"  Output tokens: {total_output_tokens:,}  (${output_cost:.4f})")
+    print(f"  Step total:    ${input_cost + output_cost:.4f}")
+
+    with open("usage_step3.json", "w") as f:
+        json.dump({
+            "input_tokens": total_input_tokens,
+            "output_tokens": total_output_tokens,
+            "total_cost": input_cost + output_cost
+        }, f)
 
 
 if __name__ == "__main__":
