@@ -11,20 +11,15 @@ dependencies = [
 
 [project.scripts]
 run_pipeline = "run_pipeline:main"
-complaint_triage = "complaint_triage:main"
-probability = "probability:main"
-severity = "severity:main"
-final_scoring = "final_scoring:main"
+complaint_triage = "pipeline.complaint_triage:main"
+probability = "pipeline.probability:main"
+severity = "pipeline.severity:main"
+final_scoring = "pipeline.final_scoring:main"
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-py-modules = [
-    "run_pipeline",
-    "complaint_triage",
-    "probability",
-    "severity",
-    "final_scoring",
-]
+py-modules = ["run_pipeline"]
+packages = ["pipeline"]

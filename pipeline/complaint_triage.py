@@ -7,17 +7,17 @@ load_dotenv()
 client = Anthropic()
 
 # Load data files
-with open("bug_data.json") as f:
+with open("examples/bug_data.json") as f:
     bugs = json.load(f)["bugs"]
 
-with open("product_context.json") as f:
+with open("config/product_context.json") as f:
     product_context = json.load(f)
 
-with open("defect_criteria.json") as f:
+with open("config/defect_criteria.json") as f:
     defect_criteria = json.load(f)["defect_criteria"] # nested in json object
 
 
-from costs import INPUT_COST_PER_TOKEN, OUTPUT_COST_PER_TOKEN
+from pipeline.costs import INPUT_COST_PER_TOKEN, OUTPUT_COST_PER_TOKEN
 
 
 def classify_defect(bug):

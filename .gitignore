@@ -6,3 +6,5 @@ __pycache__/
 usage_step*.json
 call_*.json
 final_triage_report.json
+/past_outputs
+/clinical_safety_future

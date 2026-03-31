@@ -1,0 +1,156 @@
+{
+  "report_title": "Complaint Review Board - Automated Triage Report",
+  "generated_at": "2026-03-31T15:44:15.422167",
+  "summary": {
+    "total_bugs_reviewed": 10,
+    "non_defects": 5,
+    "defects": 5,
+    "capas_recommended": 4,
+    "complaints_medium": 0,
+    "complaints_low": 1
+  },
+  "non_defect_items": [
+    {
+      "bug_id": "BUG-202",
+      "classification": "NON-DEFECT",
+      "rationale": "BUG-202 involves a misleading trend line display for users with only one mood data point, but does not qualify as a defect because it does not violate any specified user needs or product requirements. The progress dashboard continues to function as intended by loading and displaying user historical data within the required timeframe. This represents a usability concern rather than a functional deviation from documented specifications.",
+      "action": "No further action required.  Fix at team discretion."
+    },
+    {
+      "bug_id": "BUG-204",
+      "classification": "NON-DEFECT",
+      "rationale": "BUG-204 does not qualify as a defect under the current criteria because it does not violate any specified user needs or product requirements. Although the misleading confirmation message creates a poor user experience, the core therapeutic functions of MindBridge remain unaffected. This appears to be a documentation/communication issue rather than a deviation from the product's intended therapeutic functionality.",
+      "action": "No further action required.  Fix at team discretion."
+    },
+    {
+      "bug_id": "BUG-205",
+      "classification": "NON-DEFECT",
+      "rationale": "BUG-205 describes a timezone display issue in gratitude journal timestamps that does not qualify as a defect. Although present in the released product, the bug does not prevent core therapeutic functionality and no specific requirements govern timestamp formatting. This appears to be a usability enhancement rather than a deviation from intended medical device function.",
+      "action": "No further action required.  Fix at team discretion."
+    },
+    {
+      "bug_id": "BUG-206",
+      "classification": "NON-DEFECT",
+      "rationale": "BUG-206 describes a broken help center link in the released product but does not qualify as a defect under our criteria. While the bug exists in the released product, it does not represent a deviation from any specified user need or product requirement. The defined requirements focus on core therapeutic functionality rather than general support features like help documentation access.",
+      "action": "No further action required.  Fix at team discretion."
+    },
+    {
+      "bug_id": "BUG-210",
+      "classification": "NON-DEFECT",
+      "rationale": "BUG-210 does not qualify as a defect because it involves a beta program feature that is not part of the released product, failing to meet the first defect criterion. While it does violate PR-015 regarding feature accessibility controls, both criteria must be met for defect classification. The issue should be addressed as a configuration bug but does not require defect tracking processes.",
+      "action": "No further action required.  Fix at team discretion."
+    }
+  ],
+  "defect_items": [
+    {
+      "bug_id": "BUG-201",
+      "classification": "DEFECT",
+      "failed_requirements": [
+        "PR-012"
+      ],
+      "failed_user_needs": [
+        "UN-009"
+      ],
+      "defect_summary": "BUG-201 qualifies as a defect because the chatbot provided clinically inappropriate responses during an active panic disclosure, failing to accurately assess user distress and provide contextually appropriate therapeutic intervention. This represents a deviation from core product requirements for sentiment analysis accuracy and contextually appropriate chatbot responses. The issue poses clinical risk by providing inadequate support during acute mental health episodes.",
+      "risk_assessment": {
+        "probability_score": 3,
+        "probability_label": "Moderate",
+        "probability_rationale": "Users experiencing panic attacks represent a meaningful subset of the target population for a CBT-based mental health SaMD, and disclosing active panic episodes would be a reasonably common occurrence during therapeutic conversations. The defect stems from the AI/ML algorithm's sentiment analysis and response selection, which would affect any user describing similar acute distress symptoms, making this a systematic issue rather than an isolated edge case.",
+        "severity_score": 4,
+        "severity_label": "Major",
+        "severity_rationale": "During an active panic attack, providing inappropriate breathing exercises instead of proper grounding techniques or crisis resources could worsen the user's distress and prevent effective therapeutic intervention when it is most critically needed. This represents a significant failure of the core therapeutic function during a vulnerable mental health episode, potentially undermining user trust and clinical efficacy of the intervention.",
+        "risk_score": 12,
+        "risk_level": "MEDIUM"
+      },
+      "disposition": "Complaint - evaluate for CAPA escalation"
+    },
+    {
+      "bug_id": "BUG-209",
+      "classification": "DEFECT",
+      "failed_requirements": [
+        "PR-005"
+      ],
+      "failed_user_needs": [
+        "UN-005"
+      ],
+      "defect_summary": "BUG-209 qualifies as a defect because the crisis detection algorithm is inappropriately triggering on song lyrics shared in conversational context, violating the intended function of connecting users to crisis resources only when expressing genuine distress. This creates false positives that stigmatize users and undermines trust in the therapeutic relationship. The algorithm needs improved contextual analysis to distinguish between references to crisis-related terms in media versus actual expressions of suicidal ideation.",
+      "risk_assessment": {
+        "probability_score": 3,
+        "probability_label": "Moderate",
+        "probability_rationale": "Three similar reports have already been received, indicating this is not an isolated incident. Sharing song lyrics or discussing music is a common conversational behavior that users would naturally engage in during therapeutic sessions, especially when songs contain emotional content that relates to their mental health journey.",
+        "severity_score": 4,
+        "severity_label": "Major",
+        "severity_rationale": "False positive crisis detection can cause significant psychological distress to vulnerable mental health users who may feel stigmatized, misunderstood, or that the system doesn't trust their judgment about their own mental state. This undermines the therapeutic relationship and could lead users to disengage from treatment or lose confidence in sharing openly with the system. While not immediately dangerous, the impact on therapeutic efficacy and user trust in a mental health context represents a major disruption to the intended clinical function.",
+        "risk_score": 12,
+        "risk_level": "MEDIUM"
+      },
+      "disposition": "Complaint - evaluate for CAPA escalation"
+    },
+    {
+      "bug_id": "BUG-208",
+      "classification": "DEFECT",
+      "failed_requirements": [
+        "PR-011"
+      ],
+      "failed_user_needs": [
+        "UN-009"
+      ],
+      "defect_summary": "BUG-208 qualifies as a defect because the chatbot inappropriately continues conversations after users explicitly indicate they are finished, generating intrusive notifications that reopen closed sessions. This behavior fails to provide contextually appropriate therapeutic responses as required by UN-009 and violates the graceful input handling requirement in PR-011. Seven customer complaints have been received regarding this intrusive behavior.",
+      "risk_assessment": {
+        "probability_score": 3,
+        "probability_label": "Moderate",
+        "probability_rationale": "The defect is triggered by common user actions like saying 'goodbye' or 'I'm done for today' and closing the app, which are typical session-ending behaviors that many users would perform regularly. While seven complaints have been received indicating real user impact, this represents a subset of users rather than widespread occurrence, suggesting the defect occurs occasionally rather than consistently for all users who perform these actions.",
+        "severity_score": 3,
+        "severity_label": "Moderate",
+        "severity_rationale": "This defect disrupts the user's ability to properly end therapeutic sessions and creates intrusive notifications that violate user boundaries, which is particularly problematic for mental health patients who may need clear session closure for emotional regulation. While it doesn't prevent core therapeutic functions, the intrusive behavior undermines user trust and control over their therapeutic experience, as evidenced by seven customer complaints. Users can recover by dismissing notifications, but the boundary violation could cause distress to vulnerable users who explicitly indicated they were finished with their session.",
+        "risk_score": 9,
+        "risk_level": "MEDIUM"
+      },
+      "disposition": "Complaint - evaluate for CAPA escalation"
+    },
+    {
+      "bug_id": "BUG-203",
+      "classification": "DEFECT",
+      "failed_requirements": [
+        "PR-007"
+      ],
+      "failed_user_needs": [
+        "UN-004"
+      ],
+      "defect_summary": "BUG-203 qualifies as a defect because it is present in the released product and fails to deliver the correct sequential sleep hygiene content as specified in the product requirements. The mismatched audio narration disrupts the intended progressive therapeutic experience for users on Day 7 of the sleep hygiene program. This represents a deviation from both the user need for progressive daily content delivery and the specific requirement for correct sequential ordering.",
+      "risk_assessment": {
+        "probability_score": 4,
+        "probability_label": "High",
+        "probability_rationale": "This defect affects all users who reach Day 7 of the sleep hygiene program, which represents a significant portion of engaged users following the therapeutic content sequentially. The bug is tied to a common user action (accessing Day 7 content) rather than an edge case, and the CMS mapping error ensures 100% reproduction rate for users reaching this specific day in the program.",
+        "severity_score": 2,
+        "severity_label": "Minor",
+        "severity_rationale": "While the audio-text mismatch creates an inconsistent user experience that may cause momentary confusion, users can still access the correct Day 7 therapeutic content through the displayed text and continue their sleep hygiene program progression. The defect represents a content delivery issue rather than a therapeutic barrier, and users have demonstrated ability to recognize and work around the mismatch as evidenced by their reports to customer service.",
+        "risk_score": 8,
+        "risk_level": "MEDIUM"
+      },
+      "disposition": "Complaint - evaluate for CAPA escalation"
+    },
+    {
+      "bug_id": "BUG-207",
+      "classification": "DEFECT",
+      "failed_requirements": [
+        "PR-001"
+      ],
+      "failed_user_needs": [
+        "UN-001"
+      ],
+      "defect_summary": "BUG-207 qualifies as a defect because it prevents users from completing their daily mood check-ins after timezone changes, violating the fundamental requirement to allow one mood entry per calendar day. This affects the core user need to track daily mood patterns over time and has been reported by multiple traveling users. The timezone calculation error represents a clear deviation from the intended function of the mood tracking system.",
+      "risk_assessment": {
+        "probability_score": 2,
+        "probability_label": "Low",
+        "probability_rationale": "The defect only affects users who travel across timezones or manually change their phone's timezone setting, which represents a small subset of the total user base. With only four reports from traveling users, this indicates the triggering conditions occur infrequently in normal use patterns for most users of the mental health application.",
+        "severity_score": 3,
+        "severity_label": "Moderate",
+        "severity_rationale": "This defect disrupts the continuity of daily mood tracking, which is a core therapeutic activity in CBT-based interventions for establishing patterns and monitoring progress. While users can resume tracking the next day without permanent data loss, the temporary inability to complete this routine therapeutic task during travel creates a gap in their treatment regimen. The disruption is moderate because it affects therapeutic consistency but doesn't prevent users from accessing other features or create immediate safety concerns.",
+        "risk_score": 6,
+        "risk_level": "LOW"
+      },
+      "disposition": "Complaint - moderate timeline"
+    }
+  ]
+}
