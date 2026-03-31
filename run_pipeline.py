@@ -1,3 +1,4 @@
+import json
 import subprocess
 import sys
 import time
@@ -5,22 +6,22 @@ import os
 
 steps = [
     {
-        "script": "complaint_triage.py",
+        "script": "pipeline/complaint_triage.py",
         "name": "Step 1: Defect Classification",
         "output_file": "call_1_defect_classification_results.json"
     },
     {
-        "script": "probability.py",
+        "script": "pipeline/probability.py",
         "name": "Step 2: Probability Assessment",
         "output_file": "call_2_probability_results.json"
     },
     {
-        "script": "severity.py",
+        "script": "pipeline/severity.py",
         "name": "Step 3: Severity Assessment",
         "output_file": "call_3_severity_results.json"
     },
     {
-        "script": "final_scoring.py",
+        "script": "pipeline/final_scoring.py",
         "name": "Step 4: Risk Scoring and Report Generation",
         "output_file": "final_triage_report.json"
     }
@@ -28,9 +29,9 @@ steps = [
 
 # Files that must exist before the pipeline starts
 required_input_files = [
-    "bug_data.json",
-    "product_context.json",
-    "defect_criteria.json",
+    "examples/bug_data.json",
+    "config/product_context.json",
+    "config/defect_criteria.json",
     ".env"
 ]
 
@@ -146,12 +147,34 @@ def run_pipeline():
         print()
 
     total_elapsed = time.time() - start_time
+
+    usage_files = ["usage_step1.json", "usage_step2.json", "usage_step3.json"]
+    total_input_tokens = 0
+    total_output_tokens = 0
+    total_cost = 0.0
+    for path in usage_files:
+        if os.path.exists(path):
+            with open(path) as f:
+                u = json.load(f)
+                total_input_tokens += u["input_tokens"]
+                total_output_tokens += u["output_tokens"]
+                total_cost += u["total_cost"]
+
     print("=" * 70)
     print(f"  PIPELINE COMPLETE")
     print(f"  Total time: {total_elapsed:.1f} seconds")
     print(f"  Final report: final_triage_report.json")
+    print()
+    print(f"  Token Usage (all steps):")
+    print(f"    Input tokens:  {total_input_tokens:,}")
+    print(f"    Output tokens: {total_output_tokens:,}")
+    print(f"    Total cost:    ${total_cost:.4f}")
     print("=" * 70)
 
 
-if __name__ == "__main__":
+def main():
     run_pipeline()
+
+
+if __name__ == "__main__":
+    main()

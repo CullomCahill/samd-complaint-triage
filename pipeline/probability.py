@@ -10,7 +10,7 @@ client = Anthropic()
 with open("call_1_defect_classification_results.json") as f:
     call_1_results = json.load(f)
 
-with open("defect_criteria.json") as f:
+with open("config/defect_criteria.json") as f:
     defect_context = json.load(f)
 
 # Filter to only defects
@@ -21,6 +21,9 @@ print()
 
 # Get probability scale from risk matrix
 probability_scale = defect_context["risk_matrix"]["probability"]
+
+
+from pipeline.costs import INPUT_COST_PER_TOKEN, OUTPUT_COST_PER_TOKEN
 
 
 def assess_probability(defect, bug_data):
@@ -86,12 +89,12 @@ Respond in the following JSON format only, no other text:
     cleaned = cleaned.strip()
 
     result = json.loads(cleaned)
-    return result
+    return result, response.usage
 
 
 def main():
     # Load original bug data for descriptions
-    with open("bug_data.json") as f:
+    with open("examples/bug_data.json") as f:
         bug_data = json.load(f)
 
     if isinstance(bug_data, dict) and "bugs" in bug_data:
@@ -102,6 +105,8 @@ def main():
     bug_lookup = {b["id"]: b for b in bug_list}
 
     results = []
+    total_input_tokens = 0
+    total_output_tokens = 0
 
     for defect in defects:
         bug_id = defect["bug_id"]
@@ -124,8 +129,10 @@ def main():
 
         print(f"Processing {bug_id}: {bug['title']}...")
         try:
-            result = assess_probability(defect, clean_bug)
+            result, usage = assess_probability(defect, clean_bug)
             results.append(result)
+            total_input_tokens += usage.input_tokens
+            total_output_tokens += usage.output_tokens
 
             print(f"  Probability: {result['probability_score']} - {result['probability_label']}")
             print(f"  Rationale: {result['rationale']}")
@@ -150,6 +157,19 @@ def main():
         label = probability_scale[str(score)]
         print(f"  {score} ({label}): {count}")
     print(f"\nResults saved to call_2_probability_results.json")
+    input_cost = total_input_tokens * INPUT_COST_PER_TOKEN
+    output_cost = total_output_tokens * OUTPUT_COST_PER_TOKEN
+    print(f"\nToken Usage (Step 2):")
+    print(f"  Input tokens:  {total_input_tokens:,}  (${input_cost:.4f})")
+    print(f"  Output tokens: {total_output_tokens:,}  (${output_cost:.4f})")
+    print(f"  Step total:    ${input_cost + output_cost:.4f}")
+
+    with open("usage_step2.json", "w") as f:
+        json.dump({
+            "input_tokens": total_input_tokens,
+            "output_tokens": total_output_tokens,
+            "total_cost": input_cost + output_cost
+        }, f)
 
 
 if __name__ == "__main__":

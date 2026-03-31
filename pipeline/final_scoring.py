@@ -11,7 +11,7 @@ with open("call_2_probability_results.json") as f:
 with open("call_3_severity_results.json") as f:
     call_3_results = json.load(f)
 
-with open("defect_criteria.json") as f:
+with open("config/defect_criteria.json") as f:
     defect_context = json.load(f)
 
 # Create lookups

@@ -10,10 +10,16 @@ See `flow_diagram.html` (open in any browser) for a visual of the pipeline.
 
 ## Setup
 
-**Requirements:** Python 3.x, an Anthropic API key
+**Requirements:** `uv`, an Anthropic API key
 
 ```bash
-pip install anthropic python-dotenv
+uv sync
+```
+
+To add new dependencies later, use:
+
+```bash
+uv add <package-name>
 ```
 
 Add your API key to a `.env` file in the project root:
@@ -25,21 +31,42 @@ ANTHROPIC_API_KEY=your_key_here
 **Run the full pipeline:**
 
 ```bash
-python run_pipeline.py
+uv run run_pipeline
 ```
 
 `run_pipeline.py` runs a preflight check before making any API calls — it verifies all required input files exist and are non-empty, and that the API key is set. If anything is missing, it exits with a clear error message.
 
 ---
 
+## Developer Commands
+
+Run an individual step:
+
+```bash
+uv run complaint_triage
+uv run probability
+uv run severity
+uv run final_scoring
+```
+
+Environment and dependency maintenance:
+
+```bash
+uv sync
+uv lock
+uv add <package-name>
+```
+
+---
+
 ## Input Files
 
-| File | Purpose |
-|---|---|
-| `bug_data.json` | Bug tickets to be triaged (the input) |
-| `product_context.json` | User needs and product requirements (compliance artifacts) |
-| `defect_criteria.json` | SOP defect criteria, risk matrix, severity/probability scales |
-| `bug_data_training.json` | Reference dataset used when building the model |
+| File                     | Purpose                                                       |
+| ------------------------ | ------------------------------------------------------------- |
+| `bug_data.json`          | Bug tickets to be triaged (the input)                         |
+| `product_context.json`   | User needs and product requirements (compliance artifacts)    |
+| `defect_criteria.json`   | SOP defect criteria, risk matrix, severity/probability scales |
+| `bug_data_training.json` | Reference dataset used when building the model                |
 
 ---
 
@@ -48,9 +75,11 @@ python run_pipeline.py
 Each step is its own script. Each script makes **one LLM call per bug** and outputs a structured JSON file that feeds into the next step. The `bug_id` field links records across all outputs.
 
 ### Step 1 — `complaint_triage.py`
+
 **Defect Classification**
 
 Determines whether a bug is a formal defect using a two-criterion gate directly from the SOP:
+
 1. Is the bug present in the released product?
 2. Does it deviate from intended function — i.e., does it violate a User Need or Product Requirement?
 
@@ -59,6 +88,7 @@ Both must be true to classify as a defect. Outputs which specific requirements f
 → Output: `call_1_defect_classification_results.json`
 
 ### Step 2 — `probability.py`
+
 **Probability Assessment**
 
 Scores the likelihood that a user will encounter the defect (1–5 scale). Uses the defect classification output plus the original bug data. The probability and severity assessments are intentionally kept in separate LLM calls so neither influences the other.
@@ -66,6 +96,7 @@ Scores the likelihood that a user will encounter the defect (1–5 scale). Uses 
 → Output: `call_2_probability_results.json`
 
 ### Step 3 — `severity.py`
+
 **Severity Assessment**
 
 Scores the realistic impact if the defect occurs (1–5 scale). For a mental health SaMD, this includes factors like psychological distress to a vulnerable user, crisis intervention scenarios, and PHI exposure.
@@ -73,15 +104,16 @@ Scores the realistic impact if the defect occurs (1–5 scale). For a mental hea
 → Output: `call_3_severity_results.json`
 
 ### Step 4 — `final_scoring.py`
+
 **Risk Scoring and Report — No LLM involved**
 
 Combines all prior outputs. Risk score = probability × severity on a 5×5 matrix. Assembles a final triage report grouped by risk level:
 
-| Risk Score | Action |
-|---|---|
-| 1–6 | Complaint — standard resolution timeline |
-| 7–14 | Complaint — consider CAPA |
-| 15–25 | Defect — CAPA required |
+| Risk Score | Action                                   |
+| ---------- | ---------------------------------------- |
+| 1–6        | Complaint — standard resolution timeline |
+| 7–14       | Complaint — consider CAPA                |
+| 15–25      | Defect — CAPA required                   |
 
 → Output: `final_triage_report.json`
 
@@ -90,6 +122,7 @@ Combines all prior outputs. Risk score = probability × severity on a 5×5 matri
 ## Output
 
 `final_triage_report.json` contains:
+
 - Summary counts (total bugs, defects, non-defects, CAPAs recommended)
 - Non-defect items with rationale
 - Defect items with failed requirements, risk score, and recommended action
