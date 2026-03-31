@@ -6,22 +6,22 @@ import os
 
 steps = [
     {
-        "script": "complaint_triage.py",
+        "script": "pipeline/complaint_triage.py",
         "name": "Step 1: Defect Classification",
         "output_file": "call_1_defect_classification_results.json"
     },
     {
-        "script": "probability.py",
+        "script": "pipeline/probability.py",
         "name": "Step 2: Probability Assessment",
         "output_file": "call_2_probability_results.json"
     },
     {
-        "script": "severity.py",
+        "script": "pipeline/severity.py",
         "name": "Step 3: Severity Assessment",
         "output_file": "call_3_severity_results.json"
     },
     {
-        "script": "final_scoring.py",
+        "script": "pipeline/final_scoring.py",
         "name": "Step 4: Risk Scoring and Report Generation",
         "output_file": "final_triage_report.json"
     }
@@ -29,9 +29,9 @@ steps = [
 
 # Files that must exist before the pipeline starts
 required_input_files = [
-    "bug_data.json",
-    "product_context.json",
-    "defect_criteria.json",
+    "examples/bug_data.json",
+    "config/product_context.json",
+    "config/defect_criteria.json",
     ".env"
 ]
 
