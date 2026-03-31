@@ -11,6 +11,10 @@ dependencies = [
 
 [project.scripts]
 run_pipeline = "run_pipeline:main"
+complaint_triage = "pipeline.complaint_triage:main"
+probability = "pipeline.probability:main"
+severity = "pipeline.severity:main"
+final_scoring = "pipeline.final_scoring:main"
 
 [build-system]
 requires = ["setuptools>=68"]
