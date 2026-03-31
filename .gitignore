@@ -1,1 +1,5 @@
 .env
+
+/past_outputs
+/clinical_safety_future
+
